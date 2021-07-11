@@ -13,12 +13,12 @@
   
   <!-- A-Frame の VR空間に AR.js を紐づける（デバッグUIを非表示） -->
   <a-scene embedded arjs="debugUIEnabled:false;">
+    <a-assets>
+      <a-asset-items id="model" src="model_001.gltf" ></a-asset-items>
+    </a-assets>
  
     <!-- マーカーを登録（プリセットされている「hiro」マーカー） -->
     <a-marker preset="hiro">
-      <a-assets>
-        <a-asset-items id="model" src="model_001.gltf" ></a-asset-items>
-      </a-assets>
       <a-entity gltf-model="#model" scale="0.01 0.01 0.01"></a-entity>
     </a-marker>
  
