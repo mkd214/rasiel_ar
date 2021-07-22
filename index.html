@@ -20,7 +20,9 @@
     </a-assets>
   
     <!-- マーカーを登録（プリセットされている「hiro」マーカー） -->
-    <a-marker preset="hiro">
+    
+<!-- 変更後 -->
+    <a-marker type="pattern" url="pattern.patt">
       <a-entity gltf-model="#model" scale="0.1 0.1 0.1" animation-mixer="clip:*"></a-entity>
     </a-marker>
  
