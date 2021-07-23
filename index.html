@@ -17,14 +17,22 @@
   <a-scene embedded vr-mode-ui="enabled: false;" arjs="debugUIEnabled: true;">
     <a-assets>
       <a-asset-item id="model" src="model_002.gltf"></a-asset-item>
+      <a-asset-item id="ar_text" src="ar_text.gltf"></a-asset-item>
     </a-assets>
   
     <!-- マーカーを登録（プリセットされている「hiro」マーカー） -->
     
-<!-- 変更後 -->
+    <!-- 変更後 -->
     <a-marker type="pattern" url="pattern.patt">
       <a-entity gltf-model="#model" scale="0.1 0.1 0.1" animation-mixer="clip:*"></a-entity>
     </a-marker>
+        
+    <!-- マーカーを登録（プリセットされている「hiro」マーカー） -->
+    <a-marker preset="hiro">
+      <!-- マーカーの場所に箱を置く（見やすいようにワイヤーフレーム表示） -->
+      <a-entity gltf-model="#ar_text" scale="0.1 0.1 0.1"></a-entity>
+    </a-marker>
+
  
     <!-- AR用のカメラを置く -->
     <a-entity camera></a-entity>
