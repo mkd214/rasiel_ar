@@ -23,6 +23,12 @@
             marker.addEventListener('markerFound', function () {
                 var markerId = marker.id;
                 console.log('markerFound', markerId);
+                if(is_marker)
+                {
+                  const entity_space = document.querySelector('#entity_space')
+                  data = 'clip:move loop:once'
+                  entity_space.setAttribute("animation-control", data)
+                }
                 is_marker = true
             });
 
@@ -31,11 +37,12 @@
             marker.addEventListener('markerLost', function () {
                 var markerId = marker.id;
                 console.log('markerLost', markerId);
-                is_marker = false
+                //is_marker = false
             });
         }
     });
 
+    /*
     AFRAME.registerComponent('animation-control', {
       schema: {default: ''},
       init() {
@@ -51,12 +58,11 @@
           if(is_marker)
           { 
             console.log('click', 'play start')
-            data = 'clip:move loop:once'
-            entity_space.setAttribute("animation-control", data)
           }
         });
       }
     }); 
+    */
 </script>
 
 <body style="margin : 0px; overflow: hidden;">
@@ -86,7 +92,6 @@
     <!-- マーカーを登録（プリセットされている「hiro」マーカー） -->
     <a-marker id="box" preset="hiro" registerevents>
       <a-entity   id="entity_space" 
-                  class="clickable"
                   gltf-model="#space"
                   scale="0.1 0.1 0.1"
                   animation-control="clip:before"
@@ -96,12 +101,6 @@
  
     <!-- AR用のカメラを置く -->
     <a-entity camera>
-     <a-entity 
-              raycaster="objects: .clickable"
-              position="0 0 -1"
-              geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
-              material="color:#00000000; shader: flat">
-
     </a-entity>
  
   </a-scene>
