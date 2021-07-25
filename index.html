@@ -42,6 +42,8 @@
         console.log('animation-control', "init")
         const entity_space = document.querySelector('#entity_space'); 
         var scene = document.querySelector('a-scene');
+        console.log('animation-control', entity_space)
+        console.log('animation-control', scene)
 
         this.el.addEventListener('click', () => 
         {
@@ -49,7 +51,7 @@
           if(is_marker)
           { 
             console.log('click', 'play start')
-            data = 'clip: move loop:once'
+            data = 'clip:move loop:once'
             box.setAttribute("animation-mixer", data)
           }
         });
@@ -83,7 +85,7 @@
     
     <!-- マーカーを登録（プリセットされている「hiro」マーカー） -->
     <a-marker id="box" preset="hiro" registerevents>
-      <a-entity   id="#entity_space" 
+      <a-entity   id="entity_space" 
                   class="clickable"
                   gltf-model="#space"
                   scale="0.1 0.1 0.1"
