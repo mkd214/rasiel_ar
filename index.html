@@ -18,6 +18,7 @@
     <a-assets>
       <a-asset-item id="model" src="model_002.gltf"></a-asset-item>
       <a-asset-item id="ar_text" src="ar_text.gltf"></a-asset-item>
+      <a-asset-item id="space" src="fire_particle.gltf"></a-asset-item>
     </a-assets>
   
     <!-- マーカーを登録（プリセットされている「hiro」マーカー） -->
@@ -28,9 +29,16 @@
     </a-marker>
         
     <!-- マーカーを登録（プリセットされている「hiro」マーカー） -->
+    <!--  
+    <a-marker preset="hiro">
+      <a-entity gltf-model="#ar_text" scale="0.1 0.1 0.1"></a-entity>
+    </a-marker>
+    -->
+    
+    <!-- マーカーを登録（プリセットされている「hiro」マーカー） -->
     <a-marker preset="hiro">
       <!-- マーカーの場所に箱を置く（見やすいようにワイヤーフレーム表示） -->
-      <a-entity gltf-model="#ar_text" scale="0.1 0.1 0.1"></a-entity>
+      <a-entity gltf-model="#space" scale="0.1 0.1 0.1" animation-mixer="clip:*"></a-entity>
     </a-marker>
 
  
