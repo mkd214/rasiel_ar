@@ -17,6 +17,7 @@
 
     AFRAME.registerComponent('registerevents', {
         init: function () {
+            console.log('registerevents', 'init')
             var marker = this.el;
             // マーカーを検出したイベントの登録
             marker.addEventListener('markerFound', function () {
@@ -38,6 +39,7 @@
     AFRAME.registerComponent('animation-control', {
       schema: {default: ''},
       init() {
+        console.log('animation-control', "init")
         const entity_space = document.querySelector('#entity_space'); 
         var scene = document.querySelector('a-scene');
 
@@ -66,7 +68,10 @@
   
     <!-- 変更後 -->
     <a-marker type="pattern" url="pattern.patt">
-      <a-entity gltf-model="#model" scale="0.1 0.1 0.1" animation-mixer="clip:*"></a-entity>
+      <a-entity   gltf-model="#model" 
+                  scale="0.1 0.1 0.1"
+                  animation-mixer="clip:*"
+                  ></a-entity>
     </a-marker>
         
     <!-- マーカーを登録（プリセットされている「hiro」マーカー） -->
@@ -78,7 +83,12 @@
     
     <!-- マーカーを登録（プリセットされている「hiro」マーカー） -->
     <a-marker id="box" preset="hiro">
-      <a-entity id="#entity_space" gltf-model="#space" scale="0.1 0.1 0.1" animation-mixer="clip:before loop:once"></a-entity>
+      <a-entity   id="#entity_space" 
+                  class="clickable"
+                  gltf-model="#space"
+                  scale="0.1 0.1 0.1"
+                  animation-control="clip: before"
+                  ></a-entity>
     </a-marker>
 
  
