@@ -26,8 +26,8 @@
                 console.log('markerFound', markerId);
                 if(is_marker == false)
                 {
-                  data = 'clip:move'
-                  entity_space.setAttribute("animation-control", data)
+                  data = 'clip:* loop:once'
+                  entity_space.setAttribute("animation-mixer", data)
                 }
                 is_marker = true
             });
@@ -78,7 +78,6 @@
     <a-marker type="pattern" url="pattern.patt">
       <a-entity   gltf-model="#model" 
                   scale="0.1 0.1 0.1"
-                  animation-mixer="clip:*"
                   ></a-entity>
     </a-marker>
         
@@ -94,7 +93,6 @@
       <a-entity   id="entity_space" 
                   gltf-model="#space"
                   scale="0.1 0.1 0.1"
-                  animation-control="clip:before"
                   ></a-entity>
     </a-marker>
 
