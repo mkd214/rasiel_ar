@@ -11,6 +11,50 @@
   <!-- aframe-extras読み込み -->
   <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
 
+<script>
+
+    is_marker = false
+
+    AFRAME.registerComponent('registerevents', {
+        init: function () {
+            var marker = this.el;
+            // マーカーを検出したイベントの登録
+            marker.addEventListener('markerFound', function () {
+                var markerId = marker.id;
+                console.log('markerFound', markerId);
+                is_marker = true
+            });
+
+
+            // マーカーを見失ったイベントの登録
+            marker.addEventListener('markerLost', function () {
+                var markerId = marker.id;
+                console.log('markerLost', markerId);
+                is_marker = false
+            });
+        }
+    });
+
+    AFRAME.registerComponent('animation-control', {
+      schema: {default: ''},
+      init() {
+        const entity_space = document.querySelector('#entity_space'); 
+        var scene = document.querySelector('a-scene');
+
+        this.el.addEventListener('click', () => 
+        {
+          console.log('click', this.el)
+          if(is_marker)
+          { 
+            console.log('click', 'play start')
+            data = 'clip: move loop:once'
+            box.setAttribute("animation-mixer", data)
+          }
+        });
+      }
+    }); 
+</script>
+
 <body style="margin : 0px; overflow: hidden;">
   <!-- A-Frame の VR空間に AR.js を紐づける（デバッグUIを非表示） -->
   <a-scene embedded vr-mode-ui="enabled: false;" arjs="debugUIEnabled: false;">
@@ -33,9 +77,8 @@
     -->
     
     <!-- マーカーを登録（プリセットされている「hiro」マーカー） -->
-    <a-marker preset="hiro">
-      <!-- マーカーの場所に箱を置く（見やすいようにワイヤーフレーム表示） -->
-      <a-entity gltf-model="#space" scale="0.1 0.1 0.1" animation-mixer="clip:*"></a-entity>
+    <a-marker id="box" preset="hiro">
+      <a-entity id="#entity_space" gltf-model="#space" scale="0.1 0.1 0.1" animation-mixer="clip:before loop:once"></a-entity>
     </a-marker>
 
  
