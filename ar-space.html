@@ -42,31 +42,9 @@
             marker.addEventListener('markerLost', function () {
                 var markerId = marker.id;
                 console.log('markerLost', markerId);
-                //is_marker = false
             });
         }
     });
-
-    /*
-    AFRAME.registerComponent('animation-control', {
-      schema: {default: ''},
-      init() {
-        console.log('animation-control', "init")
-        const entity_space = document.querySelector('#entity_space'); 
-        var scene = document.querySelector('a-scene');
-        console.log('animation-control', entity_space)
-        console.log('animation-control', scene)
-        this.el.addEventListener('click', () => 
-        {
-          console.log('click', this.el)
-          if(is_marker)
-          { 
-            console.log('click', 'play start')
-          }
-        });
-      }
-    }); 
-    */
 </script>
 
 <body style="margin : 0px; overflow: hidden;">
@@ -76,7 +54,7 @@
       <a-asset-item id="space" src="space.gltf"></a-asset-item>
     </a-assets>
   
-    <a-marker id="box" type="pattern" url="pattern-marker3.patt" registerevents>
+    <a-marker id="box" type="pattern" url="pattern-marker.patt" registerevents>
       <a-entity   id="entity_space" 
                   gltf-model="#space"
                   scale="0.1 0.1 0.1"
