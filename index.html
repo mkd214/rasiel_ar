@@ -17,15 +17,15 @@
 
     AFRAME.registerComponent('registerevents', {
         init: function () {
-            console.log('registerevents', 'init')
+            const entity_space = document.querySelector('#entity_space')
             var marker = this.el;
+            console.log('registerevents', 'init', entity_space, marker)
             // マーカーを検出したイベントの登録
             marker.addEventListener('markerFound', function () {
                 var markerId = marker.id;
                 console.log('markerFound', markerId);
-                if(is_marker)
+                if(is_marker == false)
                 {
-                  const entity_space = document.querySelector('#entity_space')
                   data = 'clip:move loop:once'
                   entity_space.setAttribute("animation-control", data)
                 }
