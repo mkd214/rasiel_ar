@@ -29,16 +29,21 @@
 
                 if(is_launched == false)
                 {
+                  console.log('set time');
                   setTimeout(function(){
+                    console.log('go to A');
                     if(is_launched == false)
                     {
+                      console.log('go to B');
                       if(is_marker == true)
                       {
+                        console.log('play');
                         data = "clip:*"
                         entity_space.setAttribute("animation-mixer", data)
                         console.log('')
 
                         setTimeout (function(){
+                          console.log('end');
                           entity_space.setAttribute("scale", "0 0 0")
                         },7000);
                         is_launched = true
