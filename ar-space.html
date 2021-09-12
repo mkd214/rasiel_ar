@@ -19,6 +19,7 @@
     AFRAME.registerComponent('registerevents', {
         init: function () {
             const entity_space = document.querySelector('#entity_space')
+
             var marker = this.el;
             console.log('registerevents', 'init', entity_space, marker)
             // マーカーを検出したイベントの登録
@@ -38,6 +39,7 @@
                       if(is_marker == true)
                       {
                         console.log('play');
+                        entity_space.setAttribute("gltf-model", '#space')
                         data = "clip:*"
                         entity_space.setAttribute("animation-mixer", data)
                         console.log('')
@@ -69,11 +71,12 @@
   <a-scene embedded vr-mode-ui="enabled: false;" arjs="debugUIEnabled: false;">
     <a-assets>
       <a-asset-item id="space" src="space.gltf"></a-asset-item>
+      <a-asset-item id="space_stop" src="space_stop.gltf"></a-asset-item>
     </a-assets>
   
     <a-marker id="box" type="pattern" url="pattern-marker2.patt" registerevents>
       <a-entity   id="entity_space" 
-                  gltf-model="#space"
+                  gltf-model="#space_stop"
                   scale="0.1 0.1 0.1"
                   rotation="180 0 0"
                   position="0 0.8 1.5"
