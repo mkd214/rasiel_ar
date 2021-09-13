@@ -48,6 +48,9 @@
   
     var fps = 20.0;
     var count = 0.0;
+    var startTime = Date.now(); // 開始時間
+    var endTime = Date.now(); // 終了時間
+
   
     function loop(){
       setTimeout(loop, 1000/fps);
@@ -55,15 +58,17 @@
         case NONE:
           console.log('NONE');
           if(is_marker){
+            startTime = Date.now();
             state = FOUND;
           }
           break;
         case FOUND:
           console.log('FOUND');
           if(is_marker){
-            count+= fps / 1000.0;
-            if(count > 3.0){
-              count = 0.0;
+            endTime = Date.now();
+            var elaspedTime = endTime - startTime;
+            if(elaspedTime > 3000){
+              startTime = Date.now();
               state = PLAY;
               var data = "timeScale: 1";
               entity_space.setAttribute("animation-mixer", data);
@@ -74,8 +79,9 @@
           break;
         case PLAY:
           console.log('PLAY');
-          count+= fps / 1000.0;
-          if(count > 6.0){
+          endTime = Date.now();
+          var elaspedTime = endTime - startTime;
+          if(elaspedTime > 6000){
               entity_space.setAttribute("scale", "0 0 0")
               state = END;            
           }
