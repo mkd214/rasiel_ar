@@ -13,12 +13,18 @@
 
 <script>
 
+    const NONE = 0;
+    const FOUND = 1;
+    const PLAY = 2;
+    const END = 3;
+  
+    var state = NONE;
+    var entity_space;
     var is_marker = false;
-    var is_launched = false;
 
     AFRAME.registerComponent('registerevents', {
         init: function () {
-            const entity_space = document.querySelector('#entity_space')
+            entity_space = document.querySelector('#entity_space')
 
             var marker = this.el;
             console.log('registerevents', 'init', entity_space, marker)
@@ -27,33 +33,7 @@
                 var markerId = marker.id;
                 console.log('markerFound', markerId);
                 is_marker = true;
-
-                if(is_launched == false)
-                {
-                  console.log('set time');
-                  setTimeout(function(){
-                    console.log('go to A');
-                    if(is_launched == false)
-                    {
-                      console.log('go to B');
-                      if(is_marker == true)
-                      {
-                        console.log('play');
-                        data = "timeScale: 1"
-                        entity_space.setAttribute("animation-mixer", data)
-                        console.log('')
-
-                        setTimeout (function(){
-                          console.log('end');
-                          entity_space.setAttribute("scale", "0 0 0")
-                        },7000);
-                        is_launched = true
-                      }
-                    }
-                  }, 3000);
-                }
             });
-
 
             // マーカーを見失ったイベントの登録
             marker.addEventListener('markerLost', function () {
@@ -61,8 +41,53 @@
                 console.log('markerLost', markerId);
                 is_marker = false;
             });
+          
+          
         }
     });
+  
+    var count = 0;
+    var fps = 20;
+  
+    function loop(){
+      switch(state){
+        case NONE:
+          console.log('NONE');
+          if(is_marker){
+            count = 0.0;
+            state = FOUND;
+          }
+          break;
+        case FOUND:
+          console.log('FOUND');
+          if(is_marker){
+            count+=fps * 0.0010;
+            if(count > 3.0){
+              count = 0.0;
+              state = PLAY;
+              var data = "timeScale: 1";
+              entity_space.setAttribute("animation-mixer", data);
+            }
+          }else{
+            state = NONE;
+          }
+          break;
+        case PLAY:
+          console.log('PLAY');
+          count+=fps * 0.0010;
+          if(count > 6.0){
+              entity_space.setAttribute("scale", "0 0 0")
+              state = END;            
+          }
+          break;
+        case END:
+          console.log('END');
+          break;
+      }
+      setTimeout(loop, 1000/fps);
+    }
+  
+    loop();
 </script>
 
 <body style="margin : 0px; overflow: hidden;">
