@@ -46,22 +46,22 @@
         }
     });
   
-    var count = 0;
-    var fps = 20;
+    var fps = 20.0;
+    var count = 0.0;
   
     function loop(){
+      setTimeout(loop, 1000/fps);
       switch(state){
         case NONE:
           console.log('NONE');
           if(is_marker){
-            count = 0.0;
             state = FOUND;
           }
           break;
         case FOUND:
           console.log('FOUND');
           if(is_marker){
-            count+=fps * 0.0010;
+            count+= fps / 1000.0;
             if(count > 3.0){
               count = 0.0;
               state = PLAY;
@@ -74,7 +74,7 @@
           break;
         case PLAY:
           console.log('PLAY');
-          count+=fps * 0.0010;
+          count+= fps / 1000.0;
           if(count > 6.0){
               entity_space.setAttribute("scale", "0 0 0")
               state = END;            
@@ -84,7 +84,6 @@
           console.log('END');
           break;
       }
-      setTimeout(loop, 1000/fps);
     }
   
     loop();
