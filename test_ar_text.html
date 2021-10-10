@@ -1,6 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <style>
+    *{
+      /* 初期化 */
+       margin:0px;padding:0px;
+    }
+    .sample1{
+      width: 300px;
+      height: 300px;
+      position:static;
+      z-index: 5;
+    }
+    .sample0{
+      width: 300px;
+      height: 300px;
+      position:static;
+      z-index: 0;
+    }
+  </style>
   <meta charset="utf-8">
   <title>rasiel 謎解き 003</title>
 </head>
@@ -77,6 +95,7 @@
 </script>
 
 <body>
+<div class="sample0">
   <!-- A-Frame の VR空間に AR.js を紐づける（デバッグUIを非表示） -->
   <a-scene embedded vr-mode-ui="enabled: false;" arjs="debugUIEnabled: false;">
     <a-assets>
@@ -94,29 +113,31 @@
     </a-entity>
  
   </a-scene>
-<br>
-button<input type="button" id="info_button" value="     hello      " onclick="update_info()"/>
-<br>
-position
-<input type="button" id=1 value="+x" onclick="add_pos({x:+1,y:0,z:0})"/>
-<input type="button" id=2 value="-x" onclick="add_pos({x:-1,y:0,z:0})"/>
-<input type="button" id=3 value="+y" onclick="add_pos({x:0,y:+1,z:0})"/>
-<input type="button" id=4 value="-y" onclick="add_pos({x:0,y:-1,z:0})"/>
-<input type="button" id=5 value="+z" onclick="add_pos({x:0,y:0,z:+1})"/>
-<input type="button" id=6 value="-z" onclick="add_pos({x:0,y:0,z:-1})"/>
-<br>
-rotation 
-<input type="button" id=11 value="+x" onclick="add_rot({x:+1,y:0,z:0})"/>
-<input type="button" id=22 value="-x" onclick="add_rot({x:-1,y:0,z:0})"/>
-<input type="button" id=33 value="+y" onclick="add_rot({x:0,y:+1,z:0})"/>
-<input type="button" id=44 value="-y" onclick="add_rot({x:0,y:-1,z:0})"/>
-<input type="button" id=55 value="+z" onclick="add_rot({x:0,y:0,z:+1})"/>
-<input type="button" id=66 value="-z" onclick="add_rot({x:0,y:0,z:-1})"/>
-<br>
-scale
-<input type="button" id=100 value="kake" onclick="kake_scale()"/>
-<input type="button" id=101 value="waru" onclick="waru_scale()"/>
-<br>
-
+</div>
+<div class="sample1">
+  <br>
+  button<input type="button" id="info_button" value="     hello      " onclick="update_info()"/>
+  <br>
+  position
+  <input type="button" id=1 value="+x" onclick="add_pos({x:+1,y:0,z:0})"/>
+  <input type="button" id=2 value="-x" onclick="add_pos({x:-1,y:0,z:0})"/>
+  <input type="button" id=3 value="+y" onclick="add_pos({x:0,y:+1,z:0})"/>
+  <input type="button" id=4 value="-y" onclick="add_pos({x:0,y:-1,z:0})"/>
+  <input type="button" id=5 value="+z" onclick="add_pos({x:0,y:0,z:+1})"/>
+  <input type="button" id=6 value="-z" onclick="add_pos({x:0,y:0,z:-1})"/>
+  <br>
+  rotation 
+  <input type="button" id=11 value="+x" onclick="add_rot({x:+1,y:0,z:0})"/>
+  <input type="button" id=22 value="-x" onclick="add_rot({x:-1,y:0,z:0})"/>
+  <input type="button" id=33 value="+y" onclick="add_rot({x:0,y:+1,z:0})"/>
+  <input type="button" id=44 value="-y" onclick="add_rot({x:0,y:-1,z:0})"/>
+  <input type="button" id=55 value="+z" onclick="add_rot({x:0,y:0,z:+1})"/>
+  <input type="button" id=66 value="-z" onclick="add_rot({x:0,y:0,z:-1})"/>
+  <br>
+  scale
+  <input type="button" id=100 value="kake" onclick="kake_scale()"/>
+  <input type="button" id=101 value="waru" onclick="waru_scale()"/>
+  <br>
+</div>
 </body>
 </html>
