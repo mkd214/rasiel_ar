@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>rasiel 謎解き 003</title>
+</head>
+  <!-- A-Frame ライブラリの読み込み -->
+  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  <!-- AR.js ライブラリの読み込み -->
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+  <!-- aframe-extras読み込み -->
+  <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+
+<script>
+    var entity_space;
+    AFRAME.registerComponent('registerevents', {
+        init: function () {
+            entity_space = document.querySelector('#entity_space')
+            update_info()
+        }
+    });
+
+
+  function update_info(){
+    button = document.querySelector('#info_button')
+    pos = entity_space.getAttribute('position')
+    rot = entity_space.getAttribute('rotation')
+    scale = entity_space.getAttribute('scale')
+    a = ''
+    a += 'pos' + pos.x + ',' + pos.y + ',' + pos.z + '/'
+    a += 'rot' + rot.x + ',' + rot.y + ',' + rot.z + '/'
+    a += 'scale' + scale.x
+    button.setAttribute('value', a)
+  }
+
+
+  function add_pos(add_pos){
+    pos = entity_space.getAttribute('position')
+    console.log(entity_space.getAttribute('position'))
+    pos.x += add_pos.x * 0.5
+    pos.y += add_pos.y * 0.5
+    pos.z += add_pos.z * 0.5
+    entity_space.setAttribute('position', pos)
+    console.log(entity_space.getAttribute('position'))
+            update_info()
+  }
+  function add_rot(add_rot){
+    rot = entity_space.getAttribute('rotation')
+    console.log(entity_space.getAttribute('rotation'))
+    rot.x += add_rot.x * 45
+    rot.y += add_rot.y * 45
+    rot.z += add_rot.z * 45
+    entity_space.setAttribute('rotation', rot)
+    console.log(entity_space.getAttribute('rotation'))
+            update_info()
+  }
+  function kake_scale(){
+    scale = entity_space.getAttribute('scale')
+    console.log(entity_space.getAttribute('scale'))
+    scale.x = scale.x * 1.25
+    scale.y = scale.y * 1.25
+    scale.z = scale.z * 1.25
+    entity_space.setAttribute('scale', scale)
+    console.log(entity_space.getAttribute('scale'))
+            update_info()
+  }
+  function waru_scale(){
+    scale = entity_space.getAttribute('scale')
+    console.log(entity_space.getAttribute('scale'))
+    scale.x = scale.x / 1.25
+    scale.y = scale.y / 1.25
+    scale.z = scale.z / 1.25
+    entity_space.setAttribute('scale', scale)
+    console.log(entity_space.getAttribute('scale'))
+            update_info()
+  }
+</script>
+
+<body>
+  <!-- A-Frame の VR空間に AR.js を紐づける（デバッグUIを非表示） -->
+  <a-scene embedded vr-mode-ui="enabled: false;" arjs="debugUIEnabled: false;">
+    <a-assets>
+      <a-asset-item id="space" src="https://mkd214.github.io/rasiel_ar/ar_text.gltf"></a-asset-item>
+    </a-assets>
+  
+    <a-marker id="box" type="pattern" url="https://mkd214.github.io/rasiel_ar/pattern-marker1.patt" registerevents>
+      <a-entity   id="entity_space" 
+                  gltf-model="#space"
+                  ></a-entity>
+    </a-marker>
+ 
+    <!-- AR用のカメラを置く -->
+    <a-entity camera>
+    </a-entity>
+ 
+  </a-scene>
+<br>
+button<input type="button" id="info_button" value="     hello      " onclick="update_info()"/>
+<br>
+position
+<input type="button" id=1 value="+x" onclick="add_pos({x:+1,y:0,z:0})"/>
+<input type="button" id=2 value="-x" onclick="add_pos({x:-1,y:0,z:0})"/>
+<input type="button" id=3 value="+y" onclick="add_pos({x:0,y:+1,z:0})"/>
+<input type="button" id=4 value="-y" onclick="add_pos({x:0,y:-1,z:0})"/>
+<input type="button" id=5 value="+z" onclick="add_pos({x:0,y:0,z:+1})"/>
+<input type="button" id=6 value="-z" onclick="add_pos({x:0,y:0,z:-1})"/>
+<br>
+rotation 
+<input type="button" id=11 value="+x" onclick="add_rot({x:+1,y:0,z:0})"/>
+<input type="button" id=22 value="-x" onclick="add_rot({x:-1,y:0,z:0})"/>
+<input type="button" id=33 value="+y" onclick="add_rot({x:0,y:+1,z:0})"/>
+<input type="button" id=44 value="-y" onclick="add_rot({x:0,y:-1,z:0})"/>
+<input type="button" id=55 value="+z" onclick="add_rot({x:0,y:0,z:+1})"/>
+<input type="button" id=66 value="-z" onclick="add_rot({x:0,y:0,z:-1})"/>
+<br>
+scale
+<input type="button" id=100 value="kake" onclick="kake_scale()"/>
+<input type="button" id=101 value="waru" onclick="waru_scale()"/>
+<br>
+
+</body>
+</html>
