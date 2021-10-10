@@ -6,17 +6,14 @@
       /* 初期化 */
        margin:0px;padding:0px;
     }
-    .sample1{
-      width: 300px;
-      height: 300px;
-      position:static;
-      z-index: 5;
-    }
     .sample0{
-      width: 300px;
-      height: 300px;
       position:static;
-      z-index: 0;
+      width: 300;
+      height: 300;
+      z-index: 10;
+    }
+    .sample1{
+      z-index: 5;
     }
   </style>
   <meta charset="utf-8">
@@ -95,25 +92,8 @@
 </script>
 
 <body>
-<div class="sample0">
-  <!-- A-Frame の VR空間に AR.js を紐づける（デバッグUIを非表示） -->
-  <a-scene embedded vr-mode-ui="enabled: false;" arjs="debugUIEnabled: false;">
-    <a-assets>
-      <a-asset-item id="space" src="https://mkd214.github.io/rasiel_ar/ar_text.gltf"></a-asset-item>
-    </a-assets>
-  
-    <a-marker id="box" type="pattern" url="https://mkd214.github.io/rasiel_ar/pattern-marker1.patt" registerevents>
-      <a-entity   id="entity_space" 
-                  gltf-model="#space"
-                  ></a-entity>
-    </a-marker>
- 
-    <!-- AR用のカメラを置く -->
-    <a-entity camera>
-    </a-entity>
- 
-  </a-scene>
-</div>
+
+
 <div class="sample1">
   <br>
   button<input type="button" id="info_button" value="     hello      " onclick="update_info()"/>
@@ -139,5 +119,23 @@
   <input type="button" id=101 value="waru" onclick="waru_scale()"/>
   <br>
 </div>
+
+  <!-- A-Frame の VR空間に AR.js を紐づける（デバッグUIを非表示） -->
+  <a-scene embedded vr-mode-ui="enabled: false;" arjs="debugUIEnabled: false;">
+    <a-assets>
+      <a-asset-item id="space" src="https://mkd214.github.io/rasiel_ar/ar_text.gltf"></a-asset-item>
+    </a-assets>
+  
+    <a-marker id="box" type="pattern" url="https://mkd214.github.io/rasiel_ar/pattern-marker1.patt" registerevents>
+      <a-entity   id="entity_space" 
+                  gltf-model="#space"
+                  ></a-entity>
+    </a-marker>
+ 
+    <!-- AR用のカメラを置く -->
+    <a-entity camera>
+    </a-entity>
+ 
+  </a-scene>
 </body>
 </html>
