@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>テスト</title>
+</head>
+  <!-- A-Frame ライブラリの読み込み -->
+  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  <!-- AR.js ライブラリの読み込み -->
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+  <!-- aframe-extras読み込み -->
+  <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+
+<body style="margin : 0px; overflow: hidden;">
+  <!-- A-Frame の VR空間に AR.js を紐づける（デバッグUIを非表示） -->
+  <a-scene embedded vr-mode-ui="enabled: false;" arjs="debugUIEnabled: false;">
+    <a-assets>
+      <a-asset-item id="model" src="earth.gltf"></a-asset-item>
+    </a-assets>
+  
+    <!-- 変更後 -->
+    <a-marker type="pattern" url="pattern-marker2.patt">
+      <a-entity   gltf-model="#model" 
+                  scale="1 1 1"
+                  rotation="-90 0 0"
+                  ></a-entity>
+    </a-marker>
+ 
+    <!-- AR用のカメラを置く -->
+    <a-entity camera>
+    </a-entity>
+ 
+  </a-scene>
+</body>
+</html>
