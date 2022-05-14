@@ -14,15 +14,10 @@
 <body style="margin : 0px; overflow: hidden;">
   <a-scene embedded vr-mode-ui="enabled: false;" arjs="debugUIEnabled: false;">
     <a-assets>
-      <a-asset-item id="ar_text" src="ar_text.gltf"></a-asset-item>
       <a-asset-item id="model" src="model_002.gltf"></a-asset-item>
     </a-assets>
   
     <a-marker type="pattern" url="pattern-marker1.patt">
-      <a-entity   gltf-model="#ar_text"
-                  scale="0.26214 0.26214 0.26214"
-                  position="-2 0 -1"
-                  ></a-entity>
     </a-marker>
 
     <a-marker type="pattern" url="pattern-marker2.patt">
